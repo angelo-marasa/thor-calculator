@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 
 const App = () => {
   //-- Stores the amount of nodes that the user inputs in
