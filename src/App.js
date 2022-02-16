@@ -62,7 +62,7 @@ const App = () => {
   useEffect(() => {
     getThorPrice();
 
-    const timerId = setInterval(() => {
+    setInterval(() => {
       getThorPrice();
    }, 60000);
 
