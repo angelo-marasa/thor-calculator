@@ -71,7 +71,7 @@ const App = () => {
   return (
     <>
     <div className="bg-gradient-to-r from-gray-900 to-gray-600 bg-gradient-to-r h-screen">
-            <div className="container mx-auto pt-6 text-center">
+            <div className="container px-4 mx-auto pt-6 text-center">
                 <h1 className="text-3xl font-bold text-white">
                     Thor Nodes Calculator
                 </h1>
@@ -116,7 +116,7 @@ const App = () => {
                         onInput={ ( e ) => handleOdinNodes( e.target.value ) }/>
                     </div>
                 </div>
-                <p className="text-white pt-10 text-left">You're currently earning <span className="rounded-r-lg rounded-l-lg bg-amber-400 p-2 ml-2">{dailyRewards.toFixed(3)}</span> Thor per 24 hours. This is equal to <span className="rounded-r-lg rounded-l-lg bg-amber-400 p-2 ml-2">${(dailyRewards * thorPrice).toFixed(2)}</span> USD per day.</p>
+                <p className="text-white pt-10 text-left leading-10">You're currently earning <span className="rounded-r-lg rounded-l-lg bg-amber-400 p-2 ml-2">{dailyRewards.toFixed(3)}</span> Thor per 24 hours. This is equal to <span className="rounded-r-lg rounded-l-lg bg-amber-400 p-2 ml-2">${(dailyRewards * thorPrice).toFixed(2)}</span> USD per day.</p>
                 <hr className="mt-10 mb-10"/>
                 <p className="text-white">This calculator gives you an idea of what it would look like for you to either taking some passive income or compounding. Above, you see what you're making per day. Let's select a larger time frame and see what you can do.</p>
             </div>
