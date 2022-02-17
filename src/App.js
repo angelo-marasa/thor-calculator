@@ -11,7 +11,7 @@ const App = () => {
   const [odinNode, setOdinNode] = useState(0);
 
   const [godMode, setGodMode] = useState(false);
-  const [actionDays, setActionDays] = useState(17);
+  const [actionDays, setActionDays] = useState(0);
   const [dailyRewards, setDailyRewards] = useState(0);
   
   //-- Stores the Thor price from the CoinGecko API
@@ -188,8 +188,9 @@ const App = () => {
             
                 </div>
 
-            <p className="text-white text-left mt-5">In {actionDays} days, you'll have: </p>
-
+            { ((actionDays > 0) && (heimdallNode > 0 || freyaNode > 0 || thorNode > 0 || odinNode > 0)) && 
+                <p className="text-white text-left mt-5">In {actionDays} days, you'll have: </p>
+            }
             
             { heimdallNode > 0 && 
                 <div className="heimdall-node mt-5">
