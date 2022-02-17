@@ -34,33 +34,46 @@ const App = () => {
   const odinTax = 10;
 
   //-- Setter functions ------------------------
-  function handleThorPrice(price) {
+  const  handleThorPrice = (price) => {
     setThorPrice(price);
   }
 
-  function handleActionDays(days) {
+  const handleActionDays = (days) => {
       setActionDays(days);
   }
 
-  function handleHeimdalNodes(node) {
+  const handleGodMode = () => {
+    if (
+        (heimdallNode > 0) && 
+        (freyaNode > 0) && 
+        (thorNode > 0) && 
+        (odinNode > 0)
+    ) {
+        setGodMode(true);
+    } else {
+        setGodMode(false);
+    }
+  }
+
+   const handleHeimdalNodes = (node) => {
     setHeimdallNode(node);
     let rewards = ((node * hemidalRewards) + (freyaNode * freyaRewards) + (thorNode * thorRewards) + (odinNode * odinRewards));
     setDailyRewards(rewards);
   }
 
-  function handleFreyaNodes(node) {
+  const handleFreyaNodes = (node) => {
     setFreyaNode(node);
     let rewards = ((heimdallNode * hemidalRewards) + (node * freyaRewards) + (thorNode * thorRewards) + (odinNode * odinRewards));
     setDailyRewards(rewards);
   }
 
-  function handleThorNodes(node) {
+  const handleThorNodes = (node) => {
     setThorNode(node);
     let rewards = ((heimdallNode * hemidalRewards) + (freyaNode * freyaRewards) + (node * thorRewards) + (odinNode * odinRewards));
     setDailyRewards(rewards);
   }
 
-  function handleOdinNodes(node) {
+  const handleOdinNodes = (node) => {
     setOdinNode(node);
     let rewards = ((heimdallNode * hemidalRewards) + (freyaNode * freyaRewards) + (thorNode * thorRewards) + (node * odinRewards));
     setDailyRewards(rewards);
@@ -69,11 +82,7 @@ const App = () => {
 
   //--------------------------------------------
 
-  function earningsAfterFees(grossEarnings) {
-    
-  }
-
-  function getThorPrice() {
+  const getThorPrice = () => {
     axios.get(`https://api.coingecko.com/api/v3/coins/thor/tickers`)
     .then(res => {
       handleThorPrice(res['data']['tickers'][1]['converted_last']['usd']);
@@ -86,7 +95,7 @@ const App = () => {
     setInterval(() => {
       getThorPrice();
    }, 60000);
-
+   
   }, []);
 
   return (
@@ -108,7 +117,8 @@ const App = () => {
                         className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-amber-400"
                         placeholder="0"
                         pattern="\d*"
-                        onInput={ ( e ) => handleHeimdalNodes( e.target.value ) }/>
+                        min="0"
+                        onChange={ ( e ) => { handleHeimdalNodes( e.target.value ); handleGodMode(); } }/>
                     </div>
                     <div>
                     <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">
@@ -118,7 +128,8 @@ const App = () => {
                         className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-amber-400"
                         placeholder="0"
                         pattern="\d*"
-                        onInput={ ( e ) => handleFreyaNodes( e.target.value ) }/>
+                        min="0"
+                        onChange={ ( e ) => { handleFreyaNodes( e.target.value );  handleGodMode(); } }/>
                     </div>
                     <div>
                     <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">
@@ -128,7 +139,8 @@ const App = () => {
                         className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-amber-400"
                         placeholder="0"
                         pattern="\d*"
-                        onInput={ ( e ) => handleThorNodes( e.target.value ) }/>
+                        min="0"
+                        onChange={ ( e ) => { handleThorNodes( e.target.value ); handleGodMode(); } }/>
                     </div>
                     <div>
                     <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">
@@ -138,7 +150,8 @@ const App = () => {
                         className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-amber-400"
                         placeholder="0"
                         pattern="\d*"
-                        onInput={ ( e ) => handleOdinNodes( e.target.value ) }/>
+                        min="0"
+                        onChange={ ( e ) => { handleOdinNodes( e.target.value );  handleGodMode(); } }/>
                     </div>
                 </div>
                 <p className="text-white pt-10 text-left leading-10">You're currently earning <span className="rounded-r-lg rounded-l-lg bg-amber-400 p-2 ml-2">{dailyRewards.toFixed(3)}</span> Thor per 24 hours. This is equal to <span className="rounded-r-lg rounded-l-lg bg-amber-400 p-2 ml-2">${(dailyRewards * thorPrice).toFixed(2)}</span> USD per day, before claim fees.</p>
@@ -148,69 +161,69 @@ const App = () => {
                 <div className="mt-20">
                 <fieldset className="space-y-6">
                 <div className="grid sm:grid-cols-6 gap-6">
-                <label for="one-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                <label htmlFor="one-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
                     <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">1 Day</span>
                     <input type="radio" name="plan" id="one-day" value="1" className="absolute h-0 w-0 appearance-none" onChange={ ( e ) => handleActionDays( e.target.value ) }/>
                     <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
                     <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                     </span>
                 </span>
                 </label>
 
-                <label for="seven-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                <label htmlFor="seven-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
                 <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">7 Days</span>
                     <input type="radio" name="plan" id="seven-day" value="7" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
                     <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
                         <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                         </span>
                     </span>
                 </label>
-                <label for="thirty-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                <label htmlFor="thirty-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
                     <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">30 Days</span>
                     <input type="radio" name="plan" id="thirty-day" value="30" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
                     <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
                         <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                         </span>
                     </span>
                 </label>
-                <label for="ninety-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                <label htmlFor="ninety-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
                     <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">90 Days</span>
                     <input type="radio" name="plan" id="ninety-day" value="90" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
                     <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
                         <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                         </span>
                     </span>
                 </label>
-                <label for="one-eighty" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                <label htmlFor="one-eighty" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
                     <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">180 Days</span>
                     <input type="radio" name="plan" id="one-eighty" value="180" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
                     <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
                         <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                         </span>
                     </span>
                 </label>
-                <label for="three-sixty-five" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                <label htmlFor="three-sixty-five" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
                     <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">365 Days</span>
                     <input type="radio" name="plan" id="three-sixty-five" value="365" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
                     <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
                         <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                         </span>
                     </span>
@@ -219,11 +232,7 @@ const App = () => {
             </fieldset>
             
                 </div>
-
-            {/* { ((actionDays > 0) && (heimdallNode > 0 || freyaNode > 0 || thorNode > 0 || odinNode > 0)) && 
-                <p className="text-white text-left mt-5">In {actionDays} days, you'll have: </p>
-            } */}
-            <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             { heimdallNode > 0 && 
                 <div className="mt-10">
                     <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
@@ -231,7 +240,7 @@ const App = () => {
                         <p className="font-normal text-gray-400">{((heimdallNode * hemidalRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((heimdallNode * hemidalRewards)* thorPrice) - (((heimdallNode * hemidalRewards)* thorPrice) * heimdalTax / 100)).toFixed(2) } after Claim Tax.</p>
                             {
                                 ((heimdalCost / (heimdallNode * hemidalRewards))  > actionDays) && 
-                                <p className="font-normal text-gray-400 mt-2">You need an additional { (heimdalCost/ (heimdallNode * hemidalRewards) - actionDays).toFixed(2)} days to compound into another Heimdall Node.</p>
+                                <p className="font-normal text-gray-400 mt-2">You need an additional { Math.ceil(heimdalCost/ (heimdallNode * hemidalRewards) - actionDays)} days to compound into another Heimdall Node.</p>
                                  
                             }    
                         
@@ -250,7 +259,7 @@ const App = () => {
                         <p className="font-normal text-gray-400">{((freyaNode * freyaRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((freyaNode * freyaRewards)* thorPrice) - (((freyaNode * freyaRewards)* thorPrice) * freyaTax / 100)).toFixed(2) } after Claim Tax.</p>
                             {
                                 ((freyaCost/ (freyaNode * freyaRewards))  > actionDays) && 
-                                <p className="font-normal text-gray-400 mt-2">You need an additional { (freyaCost / (freyaNode * freyaRewards) - actionDays).toFixed(2)} days to compound into another Freya Node.</p>
+                                <p className="font-normal text-gray-400 mt-2">You need an additional { Math.ceil(freyaCost / (freyaNode * freyaRewards) - actionDays)} days to compound into another Freya Node.</p>
                                 
                             }    
                         
@@ -269,7 +278,7 @@ const App = () => {
                         <p className="font-normal text-gray-400">{((thorNode * thorRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((thorNode * thorRewards)* thorPrice) - (((thorNode * thorRewards)* thorPrice) * thorTax / 100)).toFixed(2) } after Claim Tax.</p>
                             {
                                 ((thorCost / (thorNode * thorRewards))  > actionDays) && 
-                                <p className="font-normal text-gray-400 mt-2">You need an additional { (thorCost / (thorNode * thorRewards) - actionDays).toFixed(2)} days to compound into another Thor Node.</p>
+                                <p className="font-normal text-gray-400 mt-2">You need an additional { Math.ceil(thorCost / (thorNode * thorRewards) - actionDays)} days to compound into another Thor Node.</p>
                                 
                             }    
                         
@@ -288,7 +297,7 @@ const App = () => {
                         <p className="font-normal text-gray-400">{((odinNode * odinRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((odinNode * odinRewards)* thorPrice) - (((odinNode * odinRewards)* thorPrice) * odinTax / 100)).toFixed(2) } after Claim Tax.</p>
                             {
                                 ((odinCost / (odinNode * odinRewards))  > actionDays) && 
-                                <p className="font-normal text-gray-400 mt-2">You need an additional { (odinCost / (odinNode * odinRewards) - actionDays).toFixed(2)} days to compound into another Odin Node.</p>
+                                <p className="font-normal text-gray-400 mt-2">You need an additional { Math.ceil(odinCost / (odinNode * odinRewards) - actionDays)} days to compound into another Odin Node.</p>
                                 
                             }    
                         
