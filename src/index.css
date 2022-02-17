@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type="radio"]:checked + span {
+  display: block;
+}
+
+/* You can use @apply when moving this into your tailwind css file, like so */
+/*
+input[type="radio"]:checked + span {
+  @apply block;
+}
+*/

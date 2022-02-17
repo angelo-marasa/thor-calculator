@@ -11,7 +11,7 @@ const App = () => {
   const [odinNode, setOdinNode] = useState(0);
 
   const [godMode, setGodMode] = useState(false);
-  const [actionDays, setActionDays] = useState(0);
+  const [actionDays, setActionDays] = useState(17);
   const [dailyRewards, setDailyRewards] = useState(0);
   
   //-- Stores the Thor price from the CoinGecko API
@@ -136,14 +136,56 @@ const App = () => {
                 <p className="text-white text-left">This calculator gives you an idea of what it would look like for you to either taking some passive income or to compound. Above, you see what you're making per day. Let's select a larger time frame and see what you can do.</p>
                 
                 <div className="mt-20">
-                    <label className="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4">
-                        How many days do you want to calculate?
-                    </label>
-                    <input type="number" 
-                        className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-amber-400 sm:w-max md:w-1/4"
-                        placeholder="0"
-                        pattern="\d*"
-                        onInput={ ( e ) => handleActionDays( e.target.value ) }/>
+                <fieldset className="space-y-6">
+                <div className="grid sm:grid-cols-4 gap-6">
+                <label for="one-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                    <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">1 Day</span>
+                    <input type="radio" name="plan" id="one-day" value="1" className="absolute h-0 w-0 appearance-none" onChange={ ( e ) => handleActionDays( e.target.value ) }/>
+                    <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
+                    <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    </span>
+                </span>
+                </label>
+
+                <label for="seven-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">7 Days</span>
+                    <input type="radio" name="plan" id="seven-day" value="7" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
+                    <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
+                        <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        </span>
+                    </span>
+                </label>
+                <label for="thirty-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                    <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">30 Days</span>
+                    <input type="radio" name="plan" id="thirty-day" value="30" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
+                    <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
+                        <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        </span>
+                    </span>
+                </label>
+                <label for="ninety-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                    <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">90 Days</span>
+                    <input type="radio" name="plan" id="ninety-day" value="90" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
+                    <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
+                        <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        </span>
+                    </span>
+                </label>
+            </div>
+            </fieldset>
+            
                 </div>
 
             <p className="text-white text-left mt-5">In {actionDays} days, you'll have: </p>
@@ -182,7 +224,6 @@ const App = () => {
             }
 
             <h3 className="text-lg mt-20 text-gray-400">[RoT, Compounding and reward taking still in the works]</h3>
-            
             
             
             
