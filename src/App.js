@@ -223,10 +223,10 @@ const App = () => {
             {/* { ((actionDays > 0) && (heimdallNode > 0 || freyaNode > 0 || thorNode > 0 || odinNode > 0)) && 
                 <p className="text-white text-left mt-5">In {actionDays} days, you'll have: </p>
             } */}
-            <div class="grid grid-cols-4 gap-4">
+            <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             { heimdallNode > 0 && 
                 <div className="mt-10">
-                    <div className="p-6 max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
+                    <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Your Heimdall Nodes</h5>
                         <p className="font-normal text-gray-400">{((heimdallNode * hemidalRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((heimdallNode * hemidalRewards)* thorPrice) - (((heimdallNode * hemidalRewards)* thorPrice) * heimdalTax / 100)).toFixed(2) } after Claim Tax.</p>
                             {
@@ -245,7 +245,7 @@ const App = () => {
 
             { freyaNode > 0 && 
                 <div className="mt-10">
-                    <div className="p-6 max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
+                    <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Your Freya Nodes</h5>
                         <p className="font-normal text-gray-400">{((freyaNode * freyaRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((freyaNode * freyaRewards)* thorPrice) - (((freyaNode * freyaRewards)* thorPrice) * freyaTax / 100)).toFixed(2) } after Claim Tax.</p>
                             {
@@ -264,7 +264,7 @@ const App = () => {
             
             { thorNode > 0 && 
                 <div className="mt-10">
-                    <div className="p-6 max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
+                    <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Your Thor Nodes</h5>
                         <p className="font-normal text-gray-400">{((thorNode * thorRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((thorNode * thorRewards)* thorPrice) - (((thorNode * thorRewards)* thorPrice) * thorTax / 100)).toFixed(2) } after Claim Tax.</p>
                             {
@@ -283,7 +283,7 @@ const App = () => {
 
             { odinNode > 0 && 
                 <div className="mt-10">
-                    <div className="p-6 max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
+                    <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Your Odin Nodes</h5>
                         <p className="font-normal text-gray-400">{((odinNode * odinRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((odinNode * odinRewards)* thorPrice) - (((odinNode * odinRewards)* thorPrice) * odinTax / 100)).toFixed(2) } after Claim Tax.</p>
                             {
