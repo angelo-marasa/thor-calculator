@@ -27,6 +27,7 @@ const Footer = () => {
                 </CopyToClipboard>
             </p>
             <p className="text-gray-400 text-center"><span className="font-bold">Disclaimer</span> I am not affiliated with Thor in any way. This is a personal project I've created for myself to quickly do Thor calculations and I'm sharing it publicly.</p>
+            <p className="text-gray-400 text-center">THOR token price data is being pulled in real-time from CoinGecko.</p>
         </div>
     )
 }
