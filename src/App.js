@@ -161,21 +161,22 @@ const App = () => {
                 <div className="mt-20">
                 <fieldset className="space-y-6">
                 <div className="grid sm:grid-cols-6 gap-6">
-                <label htmlFor="one-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
-                    <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">1 Day</span>
-                    <input type="radio" name="plan" id="one-day" value="1" className="absolute h-0 w-0 appearance-none" onChange={ ( e ) => handleActionDays( e.target.value ) }/>
-                    <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
-                    <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    </span>
-                </span>
-                </label>
 
                 <label htmlFor="seven-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
                 <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">7 Days</span>
                     <input type="radio" name="plan" id="seven-day" value="7" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
+                    <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
+                        <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        </span>
+                    </span>
+                </label>
+
+                <label htmlFor="fourteen-day" className="relative flex flex-col bg-white p-5 rounded-lg shadow-md cursor-pointer">
+                <span className="font-semibold text-gray-500 leading-tight uppercase mb-3 text-center">14 Days</span>
+                    <input type="radio" name="plan" id="fourteen-day" value="14" className="absolute h-0 w-0 appearance-none"  onChange={ ( e ) => handleActionDays( e.target.value ) }/>
                     <span aria-hidden="true" className="hidden absolute inset-0 border-2 border-amber-500 bg-amber-200 bg-opacity-10 rounded-lg">
                         <span className="absolute top-4 right-4 h-6 w-6 inline-flex items-center justify-center rounded-full bg-amber-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-amber-600">
