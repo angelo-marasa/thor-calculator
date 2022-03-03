@@ -238,7 +238,7 @@ const App = () => {
                 <div className="mt-10">
                     <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Your Heimdall Nodes</h5>
-                        <p className="font-normal text-gray-400">{((heimdallNode * hemidalRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((heimdallNode * hemidalRewards)* thorPrice) - (((heimdallNode * hemidalRewards)* thorPrice) * heimdalTax / 100)).toFixed(2) } after Claim Tax.</p>
+                        <p className="font-normal text-gray-400">{((heimdallNode * hemidalRewards) * actionDays).toFixed(3)} Thor Rewards / ${ ((((heimdallNode * hemidalRewards)* thorPrice) - (((heimdallNode * hemidalRewards)* thorPrice) * heimdalTax / 100)) * actionDays).toFixed(2) } after Claim Tax.</p>
                             {
                                 ((heimdalCost / (heimdallNode * hemidalRewards))  > actionDays) && 
                                 <p className="font-normal text-gray-400 mt-2">You need an additional { Math.ceil(heimdalCost/ (heimdallNode * hemidalRewards) - actionDays)} days to compound into another Heimdall Node.</p>
@@ -257,7 +257,7 @@ const App = () => {
                 <div className="mt-10">
                     <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Your Freya Nodes</h5>
-                        <p className="font-normal text-gray-400">{((freyaNode * freyaRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((freyaNode * freyaRewards)* thorPrice) - (((freyaNode * freyaRewards)* thorPrice) * freyaTax / 100)).toFixed(2) } after Claim Tax.</p>
+                        <p className="font-normal text-gray-400">{((freyaNode * freyaRewards) * actionDays).toFixed(3)} Thor Rewards / ${ ((((freyaNode * freyaRewards)* thorPrice) - (((freyaNode * freyaRewards)* thorPrice) * freyaTax / 100))* actionDays).toFixed(2) } after Claim Tax.</p>
                             {
                                 ((freyaCost/ (freyaNode * freyaRewards))  > actionDays) && 
                                 <p className="font-normal text-gray-400 mt-2">You need an additional { Math.ceil(freyaCost / (freyaNode * freyaRewards) - actionDays)} days to compound into another Freya Node.</p>
@@ -276,7 +276,7 @@ const App = () => {
                 <div className="mt-10">
                     <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Your Thor Nodes</h5>
-                        <p className="font-normal text-gray-400">{((thorNode * thorRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((thorNode * thorRewards)* thorPrice) - (((thorNode * thorRewards)* thorPrice) * thorTax / 100)).toFixed(2) } after Claim Tax.</p>
+                        <p className="font-normal text-gray-400">{((thorNode * thorRewards) * actionDays).toFixed(3)} Thor Rewards / ${ ((((thorNode * thorRewards)* thorPrice) - (((thorNode * thorRewards)* thorPrice) * thorTax / 100)) * actionDays).toFixed(2) } after Claim Tax.</p>
                             {
                                 ((thorCost / (thorNode * thorRewards))  > actionDays) && 
                                 <p className="font-normal text-gray-400 mt-2">You need an additional { Math.ceil(thorCost / (thorNode * thorRewards) - actionDays)} days to compound into another Thor Node.</p>
@@ -295,7 +295,7 @@ const App = () => {
                 <div className="mt-10">
                     <div className="p-6 md:max-w-sm bg-gray-800 rounded-lg border border-gray-700 shadow-md hover:bg-gray-700">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Your Odin Nodes</h5>
-                        <p className="font-normal text-gray-400">{((odinNode * odinRewards) * actionDays).toFixed(3)} Thor Rewards / ${ (((odinNode * odinRewards)* thorPrice) - (((odinNode * odinRewards)* thorPrice) * odinTax / 100)).toFixed(2) } after Claim Tax.</p>
+                        <p className="font-normal text-gray-400">{((odinNode * odinRewards) * actionDays).toFixed(3)} Thor Rewards / ${ ((((odinNode * odinRewards)* thorPrice) - (((odinNode * odinRewards)* thorPrice) * odinTax / 100)) * actionDays).toFixed(2) } after Claim Tax.</p>
                             {
                                 ((odinCost / (odinNode * odinRewards))  > actionDays) && 
                                 <p className="font-normal text-gray-400 mt-2">You need an additional { Math.ceil(odinCost / (odinNode * odinRewards) - actionDays)} days to compound into another Odin Node.</p>
